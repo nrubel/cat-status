@@ -17,6 +17,9 @@
         padding: 100px 20px;
         background-color: #f1f1f1;
         text-align: center;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
       }
       h1 {
         text-align: center;
@@ -57,12 +60,24 @@
         margin-right: 10px;
         text-indent: 0;
       }
+
+      footer {
+        margin-top: auto;
+      }
+      footer a {
+        color: #01b1c9;
+      }
     </style>
   </head>
   <body>
     <h1>Select an code to get Cat Status</h1>
     <div id="radios"></div>
     <figure></figure>
+
+    <footer>
+      Made by <a target="blank" href="https://github.com/nrubel">Nasir Uddin</a>, Photo Credit:
+      <a target="blank" href="https://http.cat">HTTP Cat</a>
+    </footer>
 
     <script type="text/javascript">
       "use strict";
