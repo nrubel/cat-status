@@ -6,7 +6,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HTTP Cat</title>
+    <title>Cat Status</title>
+    <meta name="description" content="Funny cat images with HTTP status codes & title" />
+    <meta
+      name="keywords"
+      content="Nasir Uddin, nasiruddin, github, cat, status, javascript, css, html, HTML, CSS, JavaScript, Open Graph, Twitter, Portfolio" />
+    <meta name="author" content="Nasir Uddin" />
     <meta property="og:title" content="Cat Status" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://nrubel.github.io/cat-status/" />
@@ -34,6 +39,10 @@
         text-align: center;
         margin: 0 0 20px;
       }
+      figure img {
+        max-width: 80%;
+        object-fit: contain;
+      }
       #radios {
         display: flex;
         flex-direction: row;
@@ -45,11 +54,14 @@
       }
       label {
         padding: 7px 30px;
-        background-color: rgb(39, 205, 205);
+        background-color: rgb(28, 143, 143);
         margin: 5px;
         border-radius: 25px;
         color: #fff;
         transition: all 1000ms linear;
+        box-shadow: 0 0 5px 0px #315156;
+        text-shadow: 0 0 5px #090c0c;
+        letter-spacing: 1px;
       }
       [type="radio"]:checked + label {
         background-color: rgb(248, 121, 3);
@@ -79,9 +91,13 @@
     </style>
   </head>
   <body>
-    <h1>Select an code to get Cat Status</h1>
-    <div id="radios"></div>
-    <figure></figure>
+    <main>
+      <h1>Select an code to get Cat Status</h1>
+      <div id="radios"></div>
+      <figure>
+        <img src="https://http.cat/201" alt="Created" width="600" height="400" />
+      </figure>
+    </main>
 
     <footer>
       Made by <a target="blank" href="https://github.com/nrubel">Nasir Uddin</a>, Photo Credit:
@@ -144,10 +160,8 @@
         511: "Network Authentication Required",
       };
       const body = document.querySelector("body"),
-        image = document.querySelector("figure").appendChild(document.createElement("img")),
+        image = document.querySelector("figure img"),
         radios = body.querySelector("#radios");
-      image.setAttribute("src", `https://http.cat/200`);
-      image.setAttribute("alt", list["200"].name);
       for (const item in list) {
         const input = radios.appendChild(document.createElement("input"));
         const label = radios.appendChild(document.createElement("label"));
