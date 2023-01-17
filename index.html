@@ -1,0 +1,148 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTTP Cat</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 100px 20px;
+        background-color: #f1f1f1;
+        text-align: center;
+      }
+      h1 {
+        text-align: center;
+        margin: 0 0 20px;
+      }
+      #radios {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+      [type="radio"] {
+        display: none;
+      }
+      label {
+        padding: 7px 30px;
+        background-color: rgb(39, 205, 205);
+        margin: 5px;
+        border-radius: 25px;
+        color: #fff;
+        transition: all 1000ms linear;
+      }
+      [type="radio"]:checked + label {
+        background-color: rgb(248, 121, 3);
+      }
+      [type="radio"] + label::before {
+        content: "";
+        width: 0;
+        overflow: hidden;
+        margin: 0;
+        text-indent: -14px;
+        display: inline-flex;
+        transition: width 200ms linear, text-indent 200ms linear, margin 200ms linear 100ms;
+      }
+      [type="radio"]:checked + label::before {
+        content: "\2713";
+        width: 13px;
+        margin-right: 10px;
+        text-indent: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Select an code to get Cat Status</h1>
+    <div id="radios"></div>
+    <figure></figure>
+
+    <script type="text/javascript">
+      "use strict";
+      const list = {
+        100: "Continue",
+        101: "Switching Protocols",
+        103: "Early Hints",
+        200: "OK",
+        201: "Created",
+        202: "Accepted",
+        203: "Non-Authoritative Information",
+        204: "No Content",
+        206: "Partial Content",
+        300: "Multiple Choices",
+        301: "Moved Permanently",
+        302: "Found",
+        303: "See Other",
+        304: "Not Modified",
+        307: "Temporary Redirect",
+        308: "Permanent Redirect",
+        400: "Bad Request",
+        401: "Unauthorized",
+        402: "Payment Required",
+        403: "Forbidden",
+        404: "Not Found",
+        405: "Method Not Allowed",
+        406: "Not Acceptable",
+        407: "Proxy Authentication Required",
+        408: "Request Timeout",
+        409: "Conflict",
+        410: "Gone",
+        411: "Length Required",
+        412: "Precondition Failed",
+        413: "Payload Too Large",
+        414: "URI Too Long",
+        415: "Unsupported Media Type",
+        416: "Range Not Satisfiable",
+        417: "Expectation Failed",
+        418: "I'm a teapot",
+        422: "Unprocessable Entity",
+        425: "Too Early",
+        426: "Upgrade Required",
+        429: "Too Many Requests",
+        431: "Request Header Fields Too Large",
+        451: "Unavailable For Legal Reasons",
+        500: "Internal Server Error",
+        501: "Not Implemented",
+        502: "Bad Gateway",
+        503: "Service Unavailable",
+        504: "Gateway Timeout",
+        506: "Variant Also Negotiates",
+        507: "Insufficient Storage",
+        508: "Loop Detected",
+        510: "Not Extended",
+        511: "Network Authentication Required",
+      };
+      const body = document.querySelector("body"),
+        image = document.querySelector("figure").appendChild(document.createElement("img")),
+        radios = body.querySelector("#radios");
+      image.setAttribute("src", `https://http.cat/200`);
+      image.setAttribute("alt", list["200"].name);
+      for (const item in list) {
+        const input = radios.appendChild(document.createElement("input"));
+        const label = radios.appendChild(document.createElement("label"));
+        const inputId = `input-${item}`;
+        label.setAttribute("for", inputId);
+        label.innerHTML = item;
+        input.setAttribute("id", inputId);
+        input.setAttribute("name", "code");
+        input.setAttribute("type", "radio");
+        input.setAttribute("value", item);
+        if (item === "200") input.setAttribute("checked", "checked");
+        input.setAttribute("name", "code");
+      }
+      document.querySelectorAll("#radios input").forEach((item) => {
+        item.addEventListener("change", (e) => {
+          image.setAttribute("src", `https://http.cat/${e.target.value}`);
+          image.setAttribute("alt", list[e.target.value].name);
+        });
+      });
+    </script>
+  </body>
+</html>
